@@ -1,0 +1,52 @@
+# 出力フォントファイル名
+fontFileName: brailleDiamond
+# フォント名（省略した時は点の数などから自動的に英字で作成する）
+#fontName: 八点菱形点字
+# 説明
+description: 八点菱形点字フォントです
+# バージョン（省略値は1.0）
+version: '1.0'
+# 六点点字を作成する（省略はfalse）
+sixDot: false
+# カナなどを点字にする。漢点字の場合は一段下げる。日本ライトハウス墨点字互換（省略値はfalse）
+kana : true
+# 漢点字として作成する（六点点字のときは値を無視、省略値はtrue）
+kantenji: true
+# 漢点字の場合、最下段を最上段にするか。始点終点が特殊な場合。（省略値はfalse）
+shiftKantenji: false
+# 黒の印（ dot:●、square:■、diamond:◆, 省略値はdot)
+blackMark: diamond
+# 白の印（ empty: 無、dash: ―、pin:・、outline:⚪□◇、省略値はdash)
+whiteMark: outline
+# units-per-em（省略値は2048）
+unitsPerEm: 2048
+# 次のグリフの水平方向の位置（省略値は'*'、xs*2+ dotRadius*2 + dxで算出）
+horizAdvX: '*'
+# 文字上端（省略値は'*'、unitsPerEm-descentで算出）
+ascent: '*'
+# 文字下端（省略値は-410）
+descent: -410
+# フォントの太さ（省略値normal）
+weight: normal
+# フォントの幅（省略値normal）
+stretch: normal
+# 下線の太さ（省略値は120）
+underlineThickness: 120
+# 下線の位置（省略値は-240）
+underlinePosition: -240
+# 左上の点の左端の座標（省略値は320,1250）
+xs: 320
+ys: 1250
+# 点と点の間隔（省略値は490,480）
+dx: 490
+dy: 480
+# 円の半径、●はそのもの、■では内接円、◆では外接円（省略値は170）
+radius: 170
+# 空点の半径（省略値は50）
+pinRadius: 50
+# 線、輪郭の太さ（省略値は30）
+thickness: 30
+# コピーライト（省略値はtakayan）
+copyright: 
+# URL（省略値はhttps://neu101.seesaa.net/）
+url: 

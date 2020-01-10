@@ -1,0 +1,68 @@
+﻿@font-face {
+    font-family: 'eight dot-dash braille';
+    src: url('./fonts/brailleDash.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'eight dot-pin braille';
+    src: url('./fonts/braillePinPoint.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'eight dot braille';
+    src: url('./fonts/braille.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'eight dot-outline braille';
+    src: url('./fonts/brailleOutline.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'eight square-outline braille';
+    src: url('./fonts/brailleSquare.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'eight diamond-outline braille';
+    src: url('./fonts/brailleDiamond.ttf') format('truetype');
+}
+
+.braille { 
+    font-family: "eight dot-dash braille";
+    font-size:  30px;
+}
+
+.braille-simple { 
+    font-family: "eight dot braille";
+    font-size:  30px;
+}
+
+.braille-pin { 
+    font-family: "eight dot-pin braille";
+    font-size:  30px;
+}
+
+.braille-dash { 
+    font-family: "eight dot-dash braille";
+    font-size:  30px;
+}
+
+.braille-outline { 
+    font-family: "eight dot-outline braille";
+    font-size:  30px;
+}
+
+.braille-square { 
+    font-family: "eight square-outline braille";
+    font-size:  30px;
+}
+
+.braille-diamond { 
+    font-family: "eight diamond-outline braille";
+    font-size:  30px;
+}
+
+.kantenji { 
+    font-family: "eight dot-dash braille";
+}

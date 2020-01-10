@@ -1,0 +1,25 @@
+{
+  "name": "bfgen",
+  "version": "1.0.0",
+  "description": "generate eight-dot braille fonts.",
+  "main": "bfgen.js",
+  "bin": {
+    "bfgen": "./bfgen.js"
+  },
+  "dependencies": {
+    "js-yaml": "^3.13.1",
+    "commander": "^4.0.1",
+    "svg2ttf": "^4.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rosmarinus/bfgen.git"
+  },
+  "keywords": [],
+  "author": "takayan",
+  "license": "MIT"
+}
