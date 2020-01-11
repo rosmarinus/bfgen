@@ -7,8 +7,9 @@
     "bfgen": "./bfgen.js"
   },
   "dependencies": {
-    "js-yaml": "^3.13.1",
+    "bfgen": "git+https://github.com/rosmarinus/bfgen.git",
     "commander": "^4.0.1",
+    "js-yaml": "^3.13.1",
     "svg2ttf": "^4.3.0"
   },
   "devDependencies": {},

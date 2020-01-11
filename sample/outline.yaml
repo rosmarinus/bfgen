@@ -1,9 +1,9 @@
 # 出力フォントファイル名
 fontFileName: brailleOutline
 # フォント名（省略した時は点の数などから自動的に英字で作成する）
-#fontName: 白丸付八点点字
+#fontName: 円付八点点字
 # 説明
-description: 白丸付きの八点点字フォントです
+description: 円付き八点点字フォントです
 # バージョン（省略値は1.0）
 version: '1.0'
 # 六点点字を作成する（省略はfalse）
@@ -34,19 +34,19 @@ stretch: normal
 underlineThickness: 120
 # 下線の位置（省略値は-240）
 underlinePosition: -240
-# 左上の点の左端の座標（省略値は320,1250）
+# 左上の点の左端の座標（省略値は320,1300）
 xs: 320
-ys: 1250
+ys: 1300
 # 点と点の間隔（省略値は490,480）
 dx: 490
 dy: 480
-# 円の半径、●はそのもの、■では内接円、◆では外接円（省略値は175）
-radius: 175
+# 円の半径、●はそのもの、■では内接円、◆では外接円（省略値は170）
+radius: 170
 # 空点の半径（省略値は50）
 pinRadius: 50
-# 線、輪郭の太さ（省略値は30）
-thickness: 30
+# 線、輪郭の幅（省略値は20）
+thickness: 25
 # コピーライト（省略値はtakayan）
 copyright: 
-# URL（省略値はhttps://neu101.seesaa.net/）
+# URL（省略値はhttps://github.com/rosmarinus/bfgen.git）
 url: 
