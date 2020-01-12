@@ -1,5 +1,5 @@
 # 出力フォントファイル名
-fontFileName: brailleDash
+fontFileName: fonts/brailleDash
 # フォント名（省略した時は点の数などから自動的に英字で作成する）
 #fontName: 線付八点点字
 # 説明
@@ -34,9 +34,9 @@ stretch: normal
 underlineThickness: 120
 # 下線の位置（省略値は-240）
 underlinePosition: -240
-# 左上の点の左端の座標（省略値は320,1300）
+# 左上の点の左端の座標（省略値は320,1250）
 xs: 320
-ys: 1300
+ys: 1250
 # 点と点の間隔（省略値は490,480）
 dx: 490
 dy: 480
@@ -44,9 +44,9 @@ dy: 480
 radius: 170
 # 空点の半径（省略値は50）
 pinRadius: 50
-# 線、輪郭の幅（省略値は20）
-thickness: 25
+# 線、輪郭の太さ（省略値は30）
+thickness: 30
 # コピーライト（省略値はtakayan）
 copyright: 
-# URL（省略値はhttps://github.com/rosmarinus/bfgen.git）
+# URL（省略値はhttps://github.com/rosmarinus/bfgen）
 url: 
