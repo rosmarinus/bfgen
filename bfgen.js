@@ -1,4 +1,4 @@
-﻿'use strict'
+﻿'use strict';
 // 外部モジュールインポート
 const fs = require('fs');
 const path = require('path');
@@ -86,7 +86,7 @@ const fileName = program['fontfile'] != undefined ?
 // 八点点字を漢点字として扱うか
 //（最上段を追加の点とする。ただしこれだけではユニコード点字の配置は変えない。）
 // 六点点字のみのときは無意味
-data['kantenji'] =  data['sixDot'] ? false : data['kantenji'];
+data['kantenji'] = data['sixDot'] ? false : data['kantenji'];
 
 // 特殊な漢点字のために最下段を最上段にシフトして表示する
 // 始点終点情報をユニコード点字の7点8点で保存した場合用
@@ -94,7 +94,7 @@ data['shiftKantenji'] = data['kantenji'] ? data['shiftKantenji'] : false;
 
 // ユニコード点字範囲
 const start = 0x2800;
-const end =  data['sixDot'] ? 0x283f : 0x28ff;
+const end = data['sixDot'] ? 0x283f : 0x28ff;
 
 // フォントの幅
 if (data['horizAdvX'] == '*') {
@@ -103,22 +103,22 @@ if (data['horizAdvX'] == '*') {
 
 // 名前の作成
 const capitalize = text => text.charAt(0).toUpperCase() + text.slice(1);
-const fontID = (data['sixDot'] ? 'Six-' : 'Eight-')
-                                + capitalize(data['blackMark'])
-                                + (data['whiteMark']=='empty' ? ' ': `${capitalize(data['whiteMark'])}`)
-                                + '-Braille'
-                                + (data['shiftKantenji'] ? '-Shifted' : '');
+const fontID = (data['sixDot'] ? 'Six-' : 'Eight-') +
+	capitalize(data['blackMark']) +
+	(data['whiteMark'] == 'empty' ? ' ' : `${capitalize(data['whiteMark'])}`) +
+	'-Braille' +
+	(data['shiftKantenji'] ? '-Shifted' : '');
 
-if ( data['fontName'] == null ) {
-    data['fontName'] = (data['sixDot'] ? 'six ' : 'eight ')
-                                    + data['blackMark']
-                                    + (data['whiteMark']=='empty' ? ' ': `-${data['whiteMark']}`)
-                                    + 'braille'
-                                    + (data['shiftKantenji'] ? ' shifted' : '');
+if (data['fontName'] == null) {
+	data['fontName'] = (data['sixDot'] ? 'six ' : 'eight ') +
+		data['blackMark'] +
+		(data['whiteMark'] == 'empty' ? ' ' : `-${data['whiteMark']}`) +
+		'braille' +
+		(data['shiftKantenji'] ? ' shifted' : '');
 }
 
 // 最下段、何もなければ空点の印を除外（六点点字のみを作る場合用）
-const bottomWhiteExclude =  data['sixDot'];
+const bottomWhiteExclude = data['sixDot'];
 
 // 最上段、何もなければ空点の印を除外（八点点字の下の六点のみを使う場合用）
 // 漢点字の場合、三マス漢点字のニマス目も除外されてしまうので要らない
@@ -129,8 +129,8 @@ const emptyMovement = (x, y, c) => '';
 
 // 黒と白を描く操作
 let movementHash = {
-    'black': emptyMovement,
-    'white': emptyMovement,
+	'black': emptyMovement,
+	'white': emptyMovement,
 };
 module.exports.movementHash = movementHash;
 
@@ -204,8 +204,8 @@ for (let code = start; code <= end; code++) {
 
 // 追加テーブルで指定された文字のグリフを作成する
 const character = require('./lib/table');
-Object.keys(character.table).forEach( key =>
-    glyphs += generateGryph(key, character.table[key]) + "\n" );
+Object.keys(character.table).forEach(key =>
+	glyphs += generateGryph(key, character.table[key]) + "\n");
 
 // SVG XML の作成
 const xml = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
