@@ -11,7 +11,7 @@ const program = require('commander');
 const configFileDefault = 'config.yaml';
 
 // 設定ファイルが無いときの省略値（必ず設定する）
-// ys, dx, dy, ascent は '*' を指定可能で、値を算出する
+// horizAdvX ascent は '*' を指定可能で、値を算出する
 const dataDefault = {
 	'fontFileName': 'brailleFont',
 	'fontName': null,
@@ -42,19 +42,18 @@ const dataDefault = {
 	'pinRadius': 50,
 };
 let data = {};
-module.exports.data = data;
 Object.assign(data, dataDefault);
 
 // コマンドラインの処理
 program
-	.version('0.0.1')
+	.version('1.0.0')
 	.option('-c, --config <configFile>', 'YAML-formated config file name', configFileDefault)
 	.option('-f, --fontfile <fontFileName>', `font file basename (default: "${data['fontFileName']}")`)
 	.parse(process.argv);
 
 // 不明な引数があるときは終了する
 if (program.args.length > 0) {
-	if (program.args.length == 1) {
+	if (program.args.length === 1) {
 		console.error(program._name, ": unknown argument: ", program['args'][0]);
 	} else {
 		console.error(program._name, ": unknown arguments: ", program['args'].join(', '));
@@ -71,11 +70,11 @@ if (fs.existsSync(configFile)) {
 // 要素が無ければ、省略値を入れる
 Object.keys(dataDefault).forEach(
 	item => {
-		if (data[item] == null) data[item] = dataDefault[item]
+		if (data[item] === null) data[item] = dataDefault[item]
 	});
 
 // 文字上端の値
-if (data['ascent'] == '*') {
+if (data['ascent'] === '*') {
 	data['ascent'] = data['unitsPerEm'] + data['descent'];
 }
 
@@ -97,7 +96,7 @@ const start = 0x2800;
 const end = data['sixDot'] ? 0x283f : 0x28ff;
 
 // フォントの幅
-if (data['horizAdvX'] == '*') {
+if (data['horizAdvX'] === '*') {
 	data['horizAdvX'] = data['xs'] * 2 + data['radius'] * 2 + data['dx'];
 }
 
@@ -105,14 +104,14 @@ if (data['horizAdvX'] == '*') {
 const capitalize = text => text.charAt(0).toUpperCase() + text.slice(1);
 const fontID = (data['sixDot'] ? 'Six-' : 'Eight-') +
 	capitalize(data['blackMark']) +
-	(data['whiteMark'] == 'empty' ? ' ' : `${capitalize(data['whiteMark'])}`) +
+	(data['whiteMark'] === 'empty' ? ' ' : `${capitalize(data['whiteMark'])}`) +
 	'-Braille' +
 	(data['shiftKantenji'] ? '-Shifted' : '');
 
-if (data['fontName'] == null) {
+if (data['fontName'] === null) {
 	data['fontName'] = (data['sixDot'] ? 'six ' : 'eight ') +
 		data['blackMark'] +
-		(data['whiteMark'] == 'empty' ? ' ' : `-${data['whiteMark']}`) +
+		(data['whiteMark'] === 'empty' ? ' ' : `-${data['whiteMark']}`) +
 		'braille' +
 		(data['shiftKantenji'] ? ' shifted' : '');
 }
@@ -124,18 +123,9 @@ const bottomWhiteExclude = data['sixDot'];
 // 漢点字の場合、三マス漢点字のニマス目も除外されてしまうので要らない
 const topWhiteExclude = false;
 
-// 何も描かない操作
-const emptyMovement = (x, y, c) => '';
-
-// 黒と白を描く操作
-let movementHash = {
-	'black': emptyMovement,
-	'white': emptyMovement,
-};
-module.exports.movementHash = movementHash;
-
-// 図形描画処理
-require('./lib/figure');
+// 図形描画関数を設定する
+const Shape = require('./lib/shapes/shapeloader');
+const shape = new Shape(data);
 
 // 指定された点字の図形を作成する
 const movement = codeArray => {
@@ -164,10 +154,10 @@ const movement = codeArray => {
 			};
 			const [x, y] = pos[bit];
 			if ((code - start) & (1 << bit)) {
-				result += movementHash['black'](x, y, counter);
+				result += shape.blackMovement(x, y, counter);
 			} else if ((!bottomWhiteExclude || ((code - start) >= 0x40) || (bit != 6 && bit != 7)) &&
 				(!topWhiteExclude || ((code - start) & 0b1001 != 0) || (bit != 0 && bit != 3))) {
-				result += movementHash['white'](x, y, counter);
+				result += shape.whiteMovement(x, y, counter);
 			} else {
 				result += '';
 			}
@@ -179,10 +169,10 @@ const movement = codeArray => {
 
 // グリフデータを作成する
 const generateGryph = (number, code) => {
-	if (number == null || number == '') {
+	if (number === null || number === '') {
 		return '';
 	}
-	if (typeof (number) == "string" || number instanceof String) {
+	if (typeof (number) === "string" || number instanceof String) {
 		number = number.charCodeAt(0);
 	}
 	const codeArray = isNaN(code) ? [...code].map(ch => ch.charCodeAt(0)) : [code];
@@ -203,12 +193,14 @@ for (let code = start; code <= end; code++) {
 }
 
 // 追加テーブルで指定された文字のグリフを作成する
-const character = require('./lib/table');
-Object.keys(character.table).forEach(key =>
-	glyphs += generateGryph(key, character.table[key]) + "\n");
+const Characters = require('./lib/table');
+const characters = new Characters(data);
+Object.keys(characters.table).forEach(key =>
+	glyphs += generateGryph(key, characters.table[key]) + "\n");
 
 // SVG XML の作成
-const xml = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+const xml = `\
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
   <metadata>
@@ -247,7 +239,7 @@ fs.stat(parent, (error, stats) => {
 		mkdirp(parent, (error) => {
 			if (error) {
 				console.error('出力先フォルダを作成できません。');
-				process.exit(0)
+				process.exit(-1);
 			}
 		})
 	}
