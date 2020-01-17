@@ -11,7 +11,7 @@ sixDot: false
 # カナなどを点字にする。漢点字の場合は一段下げる。日本ライトハウス墨点字互換（省略値はfalse）
 kana : true
 # 漢点字として作成する（六点点字のときは値を無視、省略値はtrue）
-kantenji: true
+kantenji: false
 # 漢点字の場合、最下段を最上段にするか。始点終点が特殊な場合。（省略値はfalse）
 shiftKantenji: false
 # 黒の印（ dot:●、square:■、diamond:◆, 省略値はdot)
