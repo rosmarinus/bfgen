@@ -28,6 +28,37 @@
     src: url('./fonts/brailleDiamond.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'eight dot-dash kantenji';
+    src: url('./fonts/kantenjiDash.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'eight dot-pin kantenji';
+    src: url('./fonts/kantenjiPinPoint.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'eight dot kantenji';
+    src: url('./fonts/kantenji.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'eight dot-outline kantenji';
+    src: url('./fonts/kantenjiOutline.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'eight square-outline kantenji';
+    src: url('./fonts/kantenjiSquare.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'eight diamond-outline kantenji';
+    src: url('./fonts/kantenjiDiamond.ttf') format('truetype');
+}
+
+
 .braille { 
     font-family: "eight dot-dash braille";
     font-size:  30px;
@@ -64,5 +95,5 @@
 }
 
 .kantenji { 
-    font-family: "eight dot-dash braille";
+    font-family: "eight dot-dash kantenji";
 }

@@ -104,15 +104,15 @@ if (data['horizAdvX'] === '*') {
 const capitalize = text => text.charAt(0).toUpperCase() + text.slice(1);
 const fontID = (data['sixDot'] ? 'Six-' : 'Eight-') +
 	capitalize(data['blackMark']) +
-	(data['whiteMark'] === 'empty' ? ' ' : `${capitalize(data['whiteMark'])}`) +
-	'-Braille' +
+	(data['whiteMark'] === 'empty' ? '' : `${capitalize(data['whiteMark'])}`) +
+	(data['kantenji'] ? '-Kantenji' : '-Braille') +
 	(data['shiftKantenji'] ? '-Shifted' : '');
 
 if (data['fontName'] === null) {
 	data['fontName'] = (data['sixDot'] ? 'six ' : 'eight ') +
 		data['blackMark'] +
-		(data['whiteMark'] === 'empty' ? ' ' : `-${data['whiteMark']}`) +
-		'braille' +
+		(data['whiteMark'] === 'empty' ? ' ' : `-${data['whiteMark']} `) +
+		(data['kantenji'] ? 'kantenji' : 'braille') +
 		(data['shiftKantenji'] ? ' shifted' : '');
 }
 
