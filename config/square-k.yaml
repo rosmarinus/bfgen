@@ -16,7 +16,7 @@ kantenji: true
 shiftKantenji: false
 # 黒の印（ dot:●、square:■、diamond:◆, 省略値はdot)
 blackMark: square
-# 白の印（ empty: 無、dash: ―、pin:・、outline:⚪□◇、省略値はdash)
+# 白の印（ empty: 無、dash: ―、pin:・、outline:○□◇、省略値はdash)
 whiteMark: outline
 # units-per-em（省略値は2048）
 unitsPerEm: 2048
@@ -35,9 +35,9 @@ underlineThickness: 120
 # 下線の位置（省略値は-240）
 underlinePosition: -240
 # 左上の点の左端の座標（省略値は320,1250）
-xs: 320
+xs: 490
 ys: 1250
-# 点と点の間隔（省略値は490,480）
+# 左上の点の中心座標（省略値は490,1300）
 dx: 490
 dy: 480
 # 円の半径、●はそのもの、■では内接円、◆では外接円（省略値は170）

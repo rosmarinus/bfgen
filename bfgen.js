@@ -33,8 +33,8 @@ const dataDefault = {
 	'stretch': 'normal',
 	'underlineThickness': 120,
 	'underlinePosition': -240,
-	'xs': 320,
-	'ys': 1300,
+	'xs': 490,
+	'ys': 1250,
 	'dx': 490,
 	'dy': 480,
 	'radius': 170,
@@ -97,7 +97,7 @@ const end = data['sixDot'] ? 0x283f : 0x28ff;
 
 // フォントの幅
 if (data['horizAdvX'] === '*') {
-	data['horizAdvX'] = data['xs'] * 2 + data['radius'] * 2 + data['dx'];
+	data['horizAdvX'] = data['xs'] * 2 + data['dx'];
 }
 
 // 名前の作成
