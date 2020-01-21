@@ -1,4 +1,5 @@
-﻿'use strict';
+#!/usr/bin/env node
+'use strict';
 // 外部モジュールインポート
 const fs = require('fs');
 const path = require('path');
