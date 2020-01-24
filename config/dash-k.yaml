@@ -3,7 +3,7 @@ fontFileName: fonts/kantenjiDash
 # フォント名（省略した時は点の数などから自動的に英字で作成する）
 #fontName: 線付八点点字
 # 説明
-description: 線付きの漢点字フォントです
+description: 線付きの漢点字フォント
 # バージョン（省略値は1.0）
 version: '1.0'
 # 六点点字を作成する（省略はfalse）
@@ -35,7 +35,7 @@ underlineThickness: 120
 # 下線の位置（省略値は-240）
 underlinePosition: -240
 # 左上の点の左端の座標（省略値は320,1250）
-xs: 320
+xs: 490
 ys: 1250
 # 点と点の間隔（省略値は490,480）
 dx: 490

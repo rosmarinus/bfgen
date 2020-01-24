@@ -10,6 +10,8 @@ const program = require('commander');
 
 // 標準の設定ファイル名
 const configFileDefault = 'config.yaml';
+// 標準の設定フォルダ名
+const configDirectory = 'config';
 
 // 設定ファイルが無いときの省略値（必ず設定する）
 // horizAdvX ascent は '*' を指定可能で、値を算出する
@@ -48,8 +50,9 @@ Object.assign(data, dataDefault);
 // コマンドラインの処理
 program
 	.version('1.0.0')
-	.option('-c, --config <configFile>', 'YAML-formated config file name', configFileDefault)
+	.option('-c, --config <configFile>', 'YAML-formated configuration file name', configFileDefault)
 	.option('-f, --fontfile <fontFileName>', `font file basename (default: "${data['fontFileName']}")`)
+	.option('-l, --list', 'list configuration files in <config> directory')
 	.parse(process.argv);
 
 // 不明な引数があるときは終了する
@@ -62,10 +65,35 @@ if (program.args.length > 0) {
 	program.help();
 }
 
+// 設定ファイルのリスト表示の指示があれば、出力して終了する
+if (program['list']) {
+	const configDir = path.join(__dirname, configDirectory);
+	fs.readdirSync(configDir).forEach(file => {
+		if (path.extname(file) === '.yaml') {
+			const conf = yaml.safeLoad(fs.readFileSync(path.join(configDir, file), 'utf8'));
+			console.log(`${file}\t${conf.description}`);
+		}
+	});
+	process.exit(0);
+}
+
 // 設定ファイルを読み込む
 const configFile = program['config'];
 if (fs.existsSync(configFile)) {
+	console.error(`config: ${configFile}`);
 	data = Object.assign(data, yaml.safeLoad(fs.readFileSync(configFile, 'utf8')));
+} else if (path.dirname(configFile) === '.') {
+	const defaultConfig = path.join(__dirname, configDirectory, configFile);
+	if (fs.existsSync(defaultConfig)) {
+		console.error(`config: <${configDirectory}>/${configFile}`);
+		data = Object.assign(data, yaml.safeLoad(fs.readFileSync(defaultConfig, 'utf8')));
+	} else {
+		console.error(`設定ファイルが見つかりません: ${configFile}`);
+		process.exit(-1);
+	}
+} else {
+	console.error(`設定ファイルが見つかりません: ${configFile}`);
+	process.exit(-1);
 }
 
 // 要素が無ければ、省略値を入れる
@@ -144,15 +172,15 @@ const movement = codeArray => {
 				5: [1, 2],
 				7: [1, 3]
 			} : {
-				0: [0, 1],
-				1: [0, 2],
-				2: [0, 3],
-				6: [0, 0],
-				3: [1, 1],
-				4: [1, 2],
-				5: [1, 3],
-				7: [1, 0]
-			};
+					0: [0, 1],
+					1: [0, 2],
+					2: [0, 3],
+					6: [0, 0],
+					3: [1, 1],
+					4: [1, 2],
+					5: [1, 3],
+					7: [1, 0]
+				};
 			const [x, y] = pos[bit];
 			if ((code - start) & (1 << bit)) {
 				result += shape.blackMovement(x, y, counter);

@@ -3,7 +3,7 @@ fontFileName: fonts/kantenjiOutline
 # フォント名（省略した時は点の数などから自動的に英字で作成する）
 #fontName: 空丸付八点点字
 # 説明
-description: 空丸付きの漢点字フォントです
+description: 空丸付きの漢点字フォント
 # バージョン（省略値は1.0）
 version: '1.0'
 # 六点点字を作成する（省略はfalse）
