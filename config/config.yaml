@@ -1,9 +1,9 @@
 # 出力フォントファイル名
-fontFileName: brailleDash
+fontFileName: fonts/brailleDash
 # フォント名（省略した時は点の数などから自動的に英字で作成する）
 #fontName: 線付八点点字
 # 説明
-description: 線付きの八点点字フォントです
+description: 線付きの八点点字フォント
 # バージョン（省略値は1.0）
 version: '1.0'
 # 六点点字を作成する（省略はfalse）

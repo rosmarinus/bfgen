@@ -50,7 +50,7 @@ Object.assign(data, dataDefault);
 // コマンドラインの処理
 program
 	.version('1.0.0')
-	.option('-c, --config <configFile>', 'YAML-formated configuration file name', configFileDefault)
+	.option('-c, --config <configFile>', `YAML-formated configuration file name (default: "${configFileDefault}")`)
 	.option('-f, --fontfile <fontFileName>', `font file basename (default: "${data['fontFileName']}")`)
 	.option('-l, --list', 'list configuration files in <config> directory')
 	.parse(process.argv);
@@ -77,8 +77,8 @@ if (program['list']) {
 	process.exit(0);
 }
 
-// 設定ファイルを読み込む
-const configFile = program['config'];
+// 設定ファイルの読み込み
+const configFile = program['config'] || configFileDefault;
 if (fs.existsSync(configFile)) {
 	console.error(`config: ${configFile}`);
 	data = Object.assign(data, yaml.safeLoad(fs.readFileSync(configFile, 'utf8')));
@@ -87,12 +87,12 @@ if (fs.existsSync(configFile)) {
 	if (fs.existsSync(defaultConfig)) {
 		console.error(`config: <${configDirectory}>/${configFile}`);
 		data = Object.assign(data, yaml.safeLoad(fs.readFileSync(defaultConfig, 'utf8')));
-	} else {
-		console.error(`設定ファイルが見つかりません: ${configFile}`);
+	} else if (program['config'] != undefined) {
+		console.error(`${program._name} : 設定ファイルが見つかりません: ${configFile}`);
 		process.exit(-1);
 	}
 } else {
-	console.error(`設定ファイルが見つかりません: ${configFile}`);
+	console.error(`${program._name} : 指定位置に設定ファイルが見つかりません: ${configFile}`);
 	process.exit(-1);
 }
 
@@ -265,12 +265,14 @@ const parent = path.dirname(fileName);
 fs.stat(parent, (error, stats) => {
 	// 必要ならば出力先フォルダ作成
 	if (error && error.code === 'ENOENT') {
-		mkdirp(parent, (error) => {
+		try {
+			fs.mkdirSync(parent, { recursive: true });
+		} catch (error) {
 			if (error) {
-				console.error('出力先フォルダを作成できません。');
+				console.error(`${program._name} : 出力先フォルダを作成できません。`);
 				process.exit(-1);
 			}
-		})
+		}
 	}
 	console.error(`svg: ${fileName}.svg`);
 	fs.writeFileSync(`${fileName}.svg`, xml, {
