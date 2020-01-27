@@ -16,7 +16,7 @@ kantenji: true
 shiftKantenji: false
 # 黒の印（ dot:●、square:■、diamond:◆, 省略値はdot)
 blackMark: dot
-# 白の印（ empty: 無、dash: ―、pin:・、outline:⚪□◇、省略値はdash)
+# 白の印（ empty: 無、dash: ―、pin:・、outline:○□◇、省略値はdash)
 whiteMark: dash
 # units-per-em（省略値は2048）
 unitsPerEm: 2048
@@ -47,6 +47,6 @@ pinRadius: 50
 # 線、輪郭の太さ（省略値は30）
 thickness: 30
 # コピーライト（省略値はtakayan）
-copyright: 
+copyright: (C) takayan
 # URL（省略値はhttps://github.com/rosmarinus/bfgen）
-url: 
+url: https://github.com/rosmarinus/bfgen

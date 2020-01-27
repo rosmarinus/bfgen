@@ -20,7 +20,7 @@ const dataDefault = {
 	'fontName': null,
 	'description': 'eight-dot braille fonts',
 	'version': '1.0',
-	'copyright': '© takayan',
+	'copyright': '(C) takayan',
 	'url': 'https://github.com/rosmarinus/bfgen',
 	'sixDot': false,
 	'kana': false,
@@ -53,9 +53,10 @@ program
 	.option('-c, --config <configFile>', `YAML-formated configuration file name (default: "${configFileDefault}")`)
 	.option('-f, --fontfile <fontFileName>', `font file basename (default: "${data['fontFileName']}")`)
 	.option('-l, --list', 'list configuration files in <config> directory')
+	.option('-s, --shapes', 'list available shapes')
 	.parse(process.argv);
 
-// 不明な引数があるときは終了する
+// 不明なパラメータがあるときは、ヘルプを出力して終了する
 if (program.args.length > 0) {
 	if (program.args.length === 1) {
 		console.error(program._name, ": unknown argument: ", program['args'][0]);
@@ -68,6 +69,7 @@ if (program.args.length > 0) {
 // 設定ファイルのリスト表示の指示があれば、出力して終了する
 if (program['list']) {
 	const configDir = path.join(__dirname, configDirectory);
+	console.log(`configuration files in ${path.join(__dirname, 'config')}`);
 	fs.readdirSync(configDir).forEach(file => {
 		if (path.extname(file) === '.yaml') {
 			const conf = yaml.safeLoad(fs.readFileSync(path.join(configDir, file), 'utf8'));
@@ -76,6 +78,19 @@ if (program['list']) {
 	});
 	process.exit(0);
 }
+
+// 利用可能な点字の図形リストを出力して終了する
+if (program['shapes']) {
+	const ShapeSeeker = require('./lib/shapes/shapeseeker');
+	const shapeSeeker = new ShapeSeeker(data);
+	console.log('available shapes');
+	Object.keys(shapeSeeker.whiteMarks).forEach(
+		key => console.log(key + ': [' + shapeSeeker.whiteMarks[key].join(', ') + ']')
+	);
+	process.exit(0);
+}
+
+
 
 // 設定ファイルの読み込み
 const configFile = program['config'] || configFileDefault;

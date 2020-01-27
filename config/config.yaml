@@ -47,6 +47,6 @@ pinRadius: 50
 # 線、輪郭の幅（省略値は20）
 thickness: 25
 # コピーライト（省略値はtakayan）
-copyright: 
+copyright: (C) takayan
 # URL（省略値はhttps://github.com/rosmarinus/bfgen.git）
-url: 
+url: https://github.com/rosmarinus/bfgen.git
