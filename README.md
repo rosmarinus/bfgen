@@ -1,5 +1,5 @@
 # bfgen
-====
+
 8-dot braille fonts generator
 
 概要
@@ -20,16 +20,19 @@ Options:
   -f, --fontfile <fontFileName>  font file basename (default: "brailleFont")
   -l, --list                     list configuration files in <config> directory
   -s, --shapes                   list available shapes
-  -h, --help                     output usage information```
+  -h, --help                     output usage information
+```
 
 
 ## インストール
 
 ```js
-yarn global add https://github.com/rosmarinus/bfgen```
+yarn global add https://github.com/rosmarinus/bfgen
+```
 または、
 ```js
-npm install -g https://github.com/rosmarinus/bfgen```
+npm install -g https://github.com/rosmarinus/bfgen
+```
 
 
 
