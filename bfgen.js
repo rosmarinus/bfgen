@@ -90,8 +90,6 @@ if (program['shapes']) {
 	process.exit(0);
 }
 
-
-
 // 設定ファイルの読み込み
 const configFile = program['config'] || configFileDefault;
 if (fs.existsSync(configFile)) {
@@ -100,7 +98,7 @@ if (fs.existsSync(configFile)) {
 } else if (path.dirname(configFile) === '.') {
 	const defaultConfig = path.join(__dirname, configDirectory, configFile);
 	if (fs.existsSync(defaultConfig)) {
-		console.error(`config: <${configDirectory}>/${configFile}`);
+		console.error(`config: ${defaultConfig}`);
 		data = Object.assign(data, yaml.safeLoad(fs.readFileSync(defaultConfig, 'utf8')));
 	} else if (program['config'] != undefined) {
 		console.error(`${program._name} : 設定ファイルが見つかりません: ${configFile}`);
