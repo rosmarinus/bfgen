@@ -1,39 +1,20 @@
 {
-  "type": "module",
   "name": "bfgen",
-  "version": "2.1.0",
+  "version": "1.0.0",
   "description": "generate eight-dot braille fonts.",
-  "main": "dist/index.js",
+  "main": "bfgen.js",
   "bin": {
-    "bfgen": "dist/index.js"
-  },
-  "files": [
-    "dist",
-    "config",
-    "locales"
-  ],
-  "config": {
-    "shapedir": "shapes"
+    "bfgen": "bfgen.js"
   },
   "dependencies": {
-    "i18n": "^0.15.3",
-    "js-yaml": "^5.5.0",
-    "svg2ttf": "^6.1.0",
-    "yargs": "^18.0.0"
+    "commander": "^4.0.1",
+    "js-yaml": "^3.13.1",
+    "mkdirp": "^0.5.1",
+    "svg2ttf": "^4.3.0"
   },
-  "devDependencies": {
-    "@types/i18n": "^0.13.12",
-    "@types/node": "^26.6.6",
-    "@types/svg2ttf": "^5.0.3",
-    "@types/yargs": "^17.0.35",
-    "typescript": "^7.0.2"
-  },
+  "devDependencies": {},
   "scripts": {
-    "build": "tsc",
-    "prepare": "npm run build",
-    "tsc": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "typecheck": "tsc --noEmit"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
