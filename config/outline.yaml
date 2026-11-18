@@ -5,11 +5,11 @@ fontFileName: fonts/brailleOutline
 # 説明
 description: 空丸付きの八点点字フォント
 # バージョン（省略値は1.0）
-version: '1.0'
+version: "1.0"
 # 六点点字を作成する（省略はfalse）
 sixDot: false
 # カナなどを点字にする。漢点字の場合は一段下げる。日本ライトハウス墨点字互換（省略値はfalse）
-kana : true
+kana: true
 # 漢点字として作成する（六点点字のときは値を無視、省略値はtrue）
 kantenji: false
 # 漢点字の場合、最下段を最上段にするか。始点終点が特殊な場合。（省略値はfalse）
@@ -21,9 +21,9 @@ whiteMark: outline
 # units-per-em（省略値は2048）
 unitsPerEm: 2048
 # 次のグリフの水平方向の位置（省略値は'*'、xs*2+ dotRadius*2 + dxで算出）
-horizAdvX: '*'
+horizAdvX: "*"
 # 文字上端（省略値は'*'、unitsPerEm-descentで算出）
-ascent: '*'
+ascent: "*"
 # 文字下端（省略値は-410）
 descent: -410
 # フォントの太さ（省略値normal）

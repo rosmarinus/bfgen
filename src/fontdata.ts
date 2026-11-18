@@ -1,0 +1,61 @@
+export type FontData = {
+	fontFileName: string;
+	fontName: string | null;
+	description: string;
+	version: string;
+	copyright: string;
+	url: string;
+	sixDot: boolean;
+	kana: boolean;
+	kantenji: boolean;
+	shiftKantenji: boolean;
+	blackMark: string;
+	whiteMark: string;
+	unitsPerEm: number;
+	horizAdvX: number | "*";
+	ascent: number | "*";
+	descent: number;
+	weight: string | number;
+	stretch: string;
+	underlineThickness: number;
+	underlinePosition: number;
+	xs: number;
+	ys: number;
+	dx: number;
+	dy: number;
+	radius: number;
+	thickness: number;
+	pinRadius: number;
+};
+
+// 設定ファイルが無いときの省略値（ここで必ず設定する）
+// horizAdvX, ascent は '*' を指定可能で、その場合他の値から算出する
+export const fontDataDefault: FontData = {
+	fontFileName: "brailleFont",
+	fontName: "",
+	description: "eight-dot braille font",
+	version: "1.0",
+	copyright: "(C) takayan",
+	url: "https://github.com/rosmarinus/bfgen",
+	sixDot: false,
+	kana: false,
+	kantenji: true,
+	shiftKantenji: false,
+	blackMark: "dot",
+	whiteMark: "dash",
+	unitsPerEm: 2048,
+	horizAdvX: "*",
+	ascent: "*",
+	descent: -410,
+	weight: "normal",
+	stretch: "normal",
+	underlineThickness: 120,
+	underlinePosition: -240,
+	xs: 490,
+	ys: 1250,
+	dx: 490,
+	dy: 480,
+	radius: 170,
+	thickness: 30,
+	pinRadius: 50,
+};
