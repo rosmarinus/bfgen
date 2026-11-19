@@ -1,0 +1,1 @@
+{"version":3,"file":"square.d.ts","sourceRoot":"","sources":["../../src/shapes/square.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,MAAM,YAAY,CAAC;AAC/B,OAAO,KAAK,EAAE,QAAQ,EAAE,MAAM,gBAAgB,CAAC;AAE/C,MAAM,CAAC,OAAO,OAAO,MAAO,SAAQ,KAAK;IACxC,YAAY,IAAI,EAAE,QAAQ,EA4BzB;CACD"}

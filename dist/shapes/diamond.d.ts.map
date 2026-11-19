@@ -1,0 +1,1 @@
+{"version":3,"file":"diamond.d.ts","sourceRoot":"","sources":["../../src/shapes/diamond.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,MAAM,YAAY,CAAC;AAC/B,OAAO,KAAK,EAAE,QAAQ,EAAE,MAAM,gBAAgB,CAAC;AAE/C,MAAM,CAAC,OAAO,OAAO,OAAQ,SAAQ,KAAK;IACzC,YAAY,IAAI,EAAE,QAAQ,EA0BzB;CACD"}

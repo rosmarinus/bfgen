@@ -1,0 +1,31 @@
+export type FontData = {
+    fontFileName: string;
+    fontName: string | null;
+    description: string;
+    version: string;
+    copyright: string;
+    url: string;
+    sixDot: boolean;
+    kana: boolean;
+    kantenji: boolean;
+    shiftKantenji: boolean;
+    blackMark: string;
+    whiteMark: string;
+    unitsPerEm: number;
+    horizAdvX: number | "*";
+    ascent: number | "*";
+    descent: number;
+    weight: string | number;
+    stretch: string;
+    underlineThickness: number;
+    underlinePosition: number;
+    xs: number;
+    ys: number;
+    dx: number;
+    dy: number;
+    radius: number;
+    thickness: number;
+    pinRadius: number;
+};
+export declare const fontDataDefault: FontData;
+//# sourceMappingURL=fontdata.d.ts.map
