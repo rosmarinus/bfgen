@@ -79,6 +79,22 @@ TypeScriptのソースは`src/`に配置し、ビルドしたJavaScript・型定
 npm install -g --allow-git=all https://github.com/rosmarinus/bfgen
 ```
 
+## フォントのリリース
+
+`v2.1.0` のような `v` で始まるタグをプッシュすると、GitHub Actions が
+`config/` 直下の全ての `.yaml`・`.yml` ファイルから TTF フォントを生成し、
+`bfgen-fonts.zip` を GitHub Release に添付します。
+ZIP には設定ファイル名に対応したフォント（例：`outline.yaml.ttf`）、設定ファイル、LICENSE が含まれます。
+
+```sh
+git tag v2.1.0
+git push origin v2.1.0
+```
+
+手動実行する場合は、Actions の「Release fonts」→「Run workflow」で既存のタグを選択してください。
+ワークフローを含むコミットにタグを付ける必要があります。
+同じタグで再実行すると、既存リリースの ZIP を更新します。
+
 ## 更新履歴
 
 - 2026/11/19 Ver2.1 記述言語をTypeScriptに変更したものを公開。依存モジュールを最新にするのを機会にESM構文、TypeScriptへの移行を実施した。

@@ -34,7 +34,12 @@ const locales = fs.readdirSync(localedir).reduce((acc: Array<string>, file: stri
 	}
 	return acc;
 }, []);
-const lang = process.env.LANG?.slice(0, 2) ?? "en";
+// 環境変数が未設定の Windows では、システムのロケールを使用する。
+const language = process.env.LC_ALL ||
+	process.env.LC_MESSAGES ||
+	process.env.LANG ||
+	Intl.DateTimeFormat().resolvedOptions().locale;
+const lang = language.toLowerCase().split(/[-_.]/)[0] ?? "en";
 const locale = locales.includes(lang) ? lang : "en";
 
 // i18n設定

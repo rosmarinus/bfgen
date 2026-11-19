@@ -1,0 +1,76 @@
+name: Release fonts
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-fonts-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Require a tag
+        env:
+          REF_TYPE: ${{ github.ref_type }}
+        run: |
+          if [[ "$REF_TYPE" != tag ]]; then
+            echo 'Select an existing tag when running this workflow manually.' >&2
+            exit 1
+          fi
+
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install and build
+        run: npm ci
+
+      - name: Generate all fonts and ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          configs=(config/*.yaml config/*.yml)
+          if (( ${#configs[@]} == 0 )); then
+            echo 'No configuration files found.' >&2
+            exit 1
+          fi
+
+          output="$RUNNER_TEMP/bfgen-fonts"
+          mkdir -p "$output/fonts" "$output/config"
+          for config in "${configs[@]}"; do
+            # Include the extension to avoid collisions between .yaml and .yml.
+            name="$(basename "$config")"
+            node dist/index.js -c "$config" -f "$output/fonts/$name"
+            test -s "$output/fonts/$name.ttf"
+            cp "$config" "$output/config/$name"
+          done
+          cp LICENSE "$output/LICENSE"
+          (cd "$output" && zip -r "$RUNNER_TEMP/bfgen-fonts.zip" fonts LICENSE config)
+          unzip -t "$RUNNER_TEMP/bfgen-fonts.zip"
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" "$RUNNER_TEMP/bfgen-fonts.zip" --clobber
+          else
+            gh release create "$TAG" "$RUNNER_TEMP/bfgen-fonts.zip" \
+              --verify-tag --title "$TAG" --generate-notes
+          fi
