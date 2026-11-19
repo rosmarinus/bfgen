@@ -3,13 +3,13 @@
   "version": "2.1.0",
   "description": "generate eight-dot braille fonts.",
   "keywords": [],
-  "homepage": "https://github.com/rosmarinus/bfgen3#readme",
+  "homepage": "https://github.com/rosmarinus/bfgen#readme",
   "bugs": {
-    "url": "https://github.com/rosmarinus/bfgen3/issues"
+    "url": "https://github.com/rosmarinus/bfgen/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rosmarinus/bfgen3.git"
+    "url": "git+https://github.com/rosmarinus/bfgen.git"
   },
   "license": "MIT",
   "author": "takayan",

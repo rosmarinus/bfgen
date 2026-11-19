@@ -76,7 +76,7 @@ TypeScriptのソースは`src/`に配置し、ビルドしたJavaScript・型定
 （npm 12.2.3 で確認済み）※必要に応じて管理者権限で
 
 ```js
-npm install -g --allow-git=all https://github.com/rosmarinus/bfgen3
+npm install -g --allow-git=all https://github.com/rosmarinus/bfgen
 ```
 
 ## 更新履歴
