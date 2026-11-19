@@ -4,8 +4,9 @@
 
 概要
 
-これはユニコード点字フォントTTFファイルを出力する[Node.js](https://nodejs.org/ja)を使ったCLIアプリケーションです。
-具体的には、yamlフォーマットで書かれたフォントのデータを元にsvgデータを作成し、その内容を[svg2ttf](https://github.com/fontello/svg2ttf#readme)に渡して、TTF（TruType）ファイルを作成しています。なお、このとき生成先に同じ名前のファイルがあるときはベース名に(2),(3)という風に番号を付けた名前にします。
+これはユニコード点字フォントTTFファイルを出力する[Node.js](https://nodejs.org/ja)を使ったCLIアプリです。
+
+yamlフォーマットで書かれたフォントのデータを元にsvgデータを作成し、その内容を[svg2ttf](https://github.com/fontello/svg2ttf#readme)に渡して、TTF（TruType）ファイルを作成しています。なお、このとき生成先に同じ名前のファイルがあるときはベース名に(2),(3)という風に番号を付けた名前にします。
  -x オプションを追加すると、SVGファイルも出力します。
 
 通常の点字フォントでは、点の無い場所がただの空白になりますが、これに形を与え、点の配置を視認しやすくしています。
@@ -79,21 +80,11 @@ TypeScriptのソースは`src/`に配置し、ビルドしたJavaScript・型定
 npm install -g --allow-git=all https://github.com/rosmarinus/bfgen
 ```
 
-## フォントのリリース
+もしくは、yarnがあれば、次のようにします。
 
-`v2.1.0` のような `v` で始まるタグをプッシュすると、GitHub Actions が
-`config/` 直下の全ての `.yaml`・`.yml` ファイルから TTF フォントを生成し、
-`bfgen-fonts.zip` を GitHub Release に添付します。
-ZIP には設定ファイル名に対応したフォント（例：`outline.yaml.ttf`）、設定ファイル、LICENSE が含まれます。
-
-```sh
-git tag v2.1.0
-git push origin v2.1.0
+```js
+yarn global add https://github.com/rosmarinus/bfgen
 ```
-
-手動実行する場合は、Actions の「Release fonts」→「Run workflow」で既存のタグを選択してください。
-ワークフローを含むコミットにタグを付ける必要があります。
-同じタグで再実行すると、既存リリースの ZIP を更新します。
 
 ## 更新履歴
 
